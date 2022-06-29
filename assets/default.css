@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Karla', sans-serif;
+  scroll-behavior: smooth;
+}
+
+button {
+  padding: 0px 30px;
+  border-radius: 8px;
+  height: 35px;
+  background-color: #000;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+input {
+  height: 30px;
+  border: 1px solid rgb(161, 161, 161);
+  padding-left: 10px;
+}
