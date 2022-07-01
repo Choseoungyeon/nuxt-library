@@ -38,6 +38,8 @@ export default {
         'chart',
         'confetti',
         'swiper',
+        'skeleton',
+        'infiniteLoading',
         'intersection',
         'vuedraggable',
         'vuedraggableButton',
@@ -47,6 +49,7 @@ export default {
         'vuexPersistedstate',
         'vueDevice',
         'nuxtDevice',
+        
       ],
       closeEvent: false,
       routeMenu: '',

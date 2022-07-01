@@ -1,9 +1,25 @@
 <template>
-  <draggable>
-    <div v-for="(item, index) in ListData" :key="index" class="drag-item">
-      {{ item }}
-    </div>
-  </draggable>
+  <div class="drag_wrap">
+    <draggable>
+      <div class="sortable">
+        <h3>해야할 일</h3>
+        <draggable :group="{ name: 'todo' }">
+          <div v-for="item in todoList" :key="item" class="card">
+            {{ item }}
+          </div>
+        </draggable>
+      </div>
+
+      <div class="sortable">
+        <h3>다 한일</h3>
+        <draggable :group="{ name: 'todo' }">
+          <div v-for="item in completeList" :key="item" class="card">
+            {{ item }}
+          </div>
+        </draggable>
+      </div>
+    </draggable>
+  </div>
 </template>
 
 <script>
@@ -14,20 +30,30 @@ export default {
   },
   data() {
     return {
-      ListData: ['바나나 🍌', '딸기 🍓', '키위 🥝'],
+      todoList: ['저녁식사', '공부하기', '휴식하기'],
+      completeList: [],
     }
   },
 }
 </script>
 
 <style scoped>
-.drag-item {
-  width: 50%;
+.card {
+  width: 200px;
   height: 50px;
   text-align: center;
   line-height: 50px;
-  background-color: rgb(0, 0, 0);
-  border-bottom: 1px solid white;
-  color: white;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.sortable {
+  padding: 20px;
+  background-color: rgb(225, 225, 225);
+  margin-bottom: 30px;
+}
+
+h3 {
+  margin-bottom: 20px;
 }
 </style>

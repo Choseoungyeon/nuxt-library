@@ -25,7 +25,7 @@ export default {
     { src: '~/plugins/v-calendar.js', ssr: false },
     { src: '~/plugins/skeleton-loader-vue.js' },
     { src: '~/plugins/vue-draggable-button.js' },
-    // { src: '~/plugins/vue-device-detector.js' },
+    { src: '~/plugins/vue-device-detector.js' },
     { src: '~/plugins/vue-bottom-sheet.js' },
     { src: '~/plugins/vue-persistedstate.js' },
   ],

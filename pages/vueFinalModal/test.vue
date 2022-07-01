@@ -12,19 +12,16 @@
           Vue Final Modal is a renderless, stackable, detachable and lightweight
           modal component.
         </p>
-        <test></test>
       </div>
     </vue-final-modal>
   </div>
 </template>
 <script>
 import { VueFinalModal } from 'vue-final-modal'
-import Test from './test.vue'
 
 export default {
   components: {
     VueFinalModal,
-    Test
   },
   data: () => ({
     showModal: false,

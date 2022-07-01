@@ -1,83 +1,82 @@
-<!-- InfiniteScroll.vue -->
 <template>
-  <div>
-    <div class="list-item">
-      <div v-if="skelton">
-        <vue-skeleton-loader
-          class="skeleton"
-          type="rect"
-          :width="250"
-          :height="400"
-          animation="fade"
-        />
-      </div>
-      <div
-        class="movie-list"
-        v-for="(item, idx) in items"
-        v-else
-        :key="idx + item.id"
-      >
-        <img
-          :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
-          alt=""
-        />
-        <p>{{ item.title }}</p>
-      </div>
-      <infinite-loading direction="top" v-show="more"></infinite-loading>
-    </div>
-    <Observer @intersect="intersected" />
+  <div class="parallax_wrap">
+    <button @click="routeHandler" class="toInfinite">infinite scroll</button>
+    <Observer class="box1 box" @intersect="() => intersected('box1')" >
+        <p>box1</p>
+    </Observer>
+    <Observer class="box2 box" @intersect="() => intersected('box2')" :options="{rootMargin:'-120px 0px'}">
+        <p>box2</p>
+    </Observer>
+    <Observer class="box3 box" @intersect="() => intersected('box3')" :options="{rootMargin:'-120px 0px'}">
+        <p>box3</p>
+    </Observer>
+    <Observer class="box4 box" @intersect="() => intersected('box4')" :options="{rootMargin:'-120px 0px'}">
+        <p>box4</p>
+    </Observer>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import InfiniteLoading from 'vue-infinite-loading'
 import Observer from '@/components/Observer'
-
 export default {
-  data: () => ({ page: 1, items: [], more: false }),
-  methods: {
-    async intersected() {
-      this.more = true
-      const res = await this.$axios.get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=ed67570ff7b36801bc6aa57f241868ca&language=en-US&page=${this.page}`
-      )
-      this.page++
-      const items = await res.data.results
-      const _this = this
-
-      setTimeout(() => {
-        _this.items = [...this.items, ...items]
-        if (_this.skelton) {
-          _this.$store.commit('CHANGE_SEKELETON_LOADING', {
-            skeltonLoading: false,
-          })
-        }
-        this.more = false
-      }, 1000)
+    methods: {
+    intersected(e) {
+        const getClass = document.getElementsByClassName(e)[0].classList
+        getClass.add("on")
     },
-  },
-  beforeDestroy() {
-    this.more = true
+    routeHandler(){
+        this.$router.push({
+            name:"intersection-infiniteScroll"
+        })
+    }
   },
   components: {
-    Observer,
-    InfiniteLoading,
-  },
-  computed: {
-    ...mapState({ skelton: (state) => state.skeltonLoading }),
-  },
-  watch: {
-    skelton() {
-      console.log(this.skelton)
-    },
+    Observer
   },
 }
 </script>
 
-<style>
-.movie-list img {
-  width: 250px;
-  height: 400px;
-}
+<style >
+    .parallax_wrap{
+        width:100%;
+        height: 4000px;
+    }
+
+    .toInfinite{
+        float: left;
+        clear: both;
+    }
+
+    .box{
+        width:400px;
+        height: 300px;
+        float: left;
+        clear: both;
+        margin-top: 100px;
+        background-color: rgb(224, 224, 224);
+        line-height: 300px;
+        text-align: center;
+        transform: translateX(-330px);
+        transition: 0.5s;
+    }
+
+    .box2{
+        margin-top: 700px;
+         transform: translateX(330px);
+        float: right;
+    }
+
+    .box3{
+        margin-top: 700px;
+    }
+
+    .box4{
+        margin-top: 700px;
+        transform: translateX(330px);
+        float: right;
+    }
+
+    .on{
+        transform: translateX(0px);
+    }
 </style>

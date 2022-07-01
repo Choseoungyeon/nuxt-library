@@ -1,6 +1,8 @@
 <!-- Observer.vue -->
 <template>
-  <div class="observer" />
+  <div class="observer">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -12,6 +14,7 @@ export default {
   mounted() {
     const options = this.options || {}
     this.observer = new IntersectionObserver(([entry]) => {
+      console.log(entry)
       if (entry && entry.isIntersecting) {
         this.$emit('intersect')
       }

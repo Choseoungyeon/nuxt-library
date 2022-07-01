@@ -2,16 +2,14 @@
   <div>
     <h2>Home!</h2>
     <p class="library-group">
-      @nuxt/kit<br />
-      @nuxt/schema<br />
       nuxt-webpack-optimistations<br />
       v-calendar<br />
       chart.js &#38; chartjs-plugin-datalabels<br />
       vue-confetti<br />
       swiper &#38; vue-awesome-swiper<br />
-      intersection-observer<br />
       skeleton-loader-vue<br />
       vue-infinite-loading<br />
+      intersection-observer<br />
       vuedraggable<br />
       vue-draggable-button<br />
       vue-slider-component<br />

@@ -1,7 +1,7 @@
 <template>
   <draggable-button
     class="button_wrap"
-    style="left: 30px; top: 17%; z-index: 10"
+    style="left: 30px; top: 17%; z-index: 88"
     :isClick.sync="btnIsClick"
   >
     <img alt="Vue logo" @click="clickHandler" src="@/static/icon.png" />
@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     clickHandler() {
+      console.log('run')
       if (this.btnIsClick) {
         this.$store.commit('personData/UPDATE_NAME', '')
         this.$router.push({ name: 'index', query: { productId: 'P0001' } })
